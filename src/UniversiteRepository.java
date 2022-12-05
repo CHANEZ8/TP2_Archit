@@ -7,13 +7,18 @@ import java.sql.Statement;
 
 public class UniversiteRepository implements InUniversiteRepo{
 	private InDBConnection BD;
+	IJournal affiche;
+	UniversiteRepository(IJournal affiche){
+		this.affiche = affiche;
+	}
+
 	@Override
 	public Universite GetById(int universityId) throws SQLException {
 		
 		BD= DBConnection.getDBConnection();
 		Connection connect=BD.getConn(); 
 		Statement stmt = connect.createStatement();
-		System.out.println("LogBD : d�but recherche de id universit� dans la base de donn�e");
+		affiche.outPut_Msg("LogBD : d�but recherche de id universit� dans la base de donn�e");
 		
 		String sql = "select * from universite where id_universite="+ universityId;
 		ResultSet rs = stmt.executeQuery(sql);
@@ -21,7 +26,7 @@ public class UniversiteRepository implements InUniversiteRepo{
 		TypePackage p=TypePackage.valueOf(rs.getString(3));
 		Universite u = new Universite (rs.getInt(1),rs.getString(2),p);
 			
-		System.out.println("LogBD : universit� r�cup�r�e");
+		affiche.outPut_Msg("LogBD : universit� r�cup�r�e");
 		
 		connect.close();
 		return u;	
