@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ public class EtudiantService {
 	}
 
 	
-	boolean inscription (int matricule, String nom, String prenom, String email,String pwd, int id_universite) throws SQLException	
+	boolean inscription (int matricule, String nom, String prenom, String email,String pwd, int id_universite) throws SQLException, IOException	
 	{
 	
 	    Etudiant stud = new Etudiant(matricule, nom, prenom, email,pwd,id_universite);
@@ -25,34 +26,17 @@ public class EtudiantService {
 	    
 		affiche.outPut_Msg("Log: debut de l'operation d'ajout de l'etudiant avec matricule "+matricule);
 	    
-	    if(email == null || email.length() == 0)
-	    {
-	    	return false;
-	    }
-	    
-	    if (etudRepo.Exists(matricule))
-	    {
-	        return false;
-	    }
-	    
-		if (etudRepo.Exists(email))
-	    {
-	        return false;
-	    }
+	    if (etudRepo.VerificationMatEmail(stud)){
+			return false;
+		}
 		
 		
 		
-		 if (univ.getPack() == TypePackage.Standard)
-	     {
-	          stud.setNbLivreMensuel_Autorise(10);
-	     }
-	     else if (univ.getPack() == TypePackage.Premium)
-	     {
-	    	 stud.setNbLivreMensuel_Autorise(10*2);
-	     }                           
+		stud.setNbLivreMensuel_Autorise(univRepo.getNombreLivreAutoriser(stud.getId_universite()));                
 	     
 		 etudRepo.add(stud);
 		 affiche.outPut_Msg("Log: Fin de l'operation d'ajout de l'etudiant avec matricule "+matricule);
+		 
 		 return true;
 	    
 		

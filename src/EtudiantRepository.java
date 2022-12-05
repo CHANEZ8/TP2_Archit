@@ -68,4 +68,15 @@ public class EtudiantRepository implements InEtudiantRepo{
 		return false;
 	}
 
+
+	@Override
+	public boolean VerificationMatEmail(Etudiant etud) throws SQLException {
+		String email = etud.getEmail();
+		boolean existM = Exists(etud.getMatricule());
+		boolean existEmail = Exists(email);
+		boolean veriFormatEmail = ((email == null) || (email.length() == 0));
+		return (existM || existEmail || veriFormatEmail);
+		
+	}
+
 }
