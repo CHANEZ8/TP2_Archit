@@ -8,7 +8,7 @@ public class MainApp {
 
 		EtudiantService serv=new EtudiantService();
 		try {
-			serv.inscription(2, "Guendouziiiii", "wassila", "guen@gmail.com","xxxx", 1);
+			serv.inscription(2, "Guendouziiiii", "wassila", "guen@gmail.com","xxxx", 123);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
