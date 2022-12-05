@@ -4,14 +4,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 public class EtudiantService {
-	
+	private InEtudiantRepo etudRepo;
+	private InUniversiteRepo univRepo;
+
+	public EtudiantService(InEtudiantRepo etudRepo, InUniversiteRepo univRepo)
+	{
+		this.etudRepo = etudRepo;
+		this.univRepo = univRepo;
+		
+	}
+
 	
 	boolean inscription (int matricule, String nom, String prenom, String email,String pwd, int id_universite) throws SQLException	
 	{
-		EtudiantRepository StudRep= new EtudiantRepository();
-	    UniversiteRepository UnivRep= new UniversiteRepository();
+	
 	    Etudiant stud = new Etudiant(matricule, nom, prenom, email,pwd,id_universite);
-	    Universite univ=UnivRep.GetById(id_universite);
+	    Universite univ=univRepo.GetById(id_universite);
 	    
 	    System.out.println("Log: debut de l'operation d'ajout de l'etudiant avec matricule "+matricule);
 	    
@@ -20,12 +28,12 @@ public class EtudiantService {
 	    	return false;
 	    }
 	    
-	    if (StudRep.Exists(matricule))
+	    if (etudRepo.Exists(matricule))
 	    {
 	        return false;
 	    }
 	    
-		if (StudRep.Exists(email))
+		if (etudRepo.Exists(email))
 	    {
 	        return false;
 	    }
@@ -41,7 +49,7 @@ public class EtudiantService {
 	    	 stud.setNbLivreMensuel_Autorise(10*2);
 	     }                           
 	     
-		 StudRep.add(stud);
+		 etudRepo.add(stud);
 		 System.out.println("Log: Fin de l'operation d'ajout de l'etudiant avec matricule "+matricule);
 		 return true;
 	    

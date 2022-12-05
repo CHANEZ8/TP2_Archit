@@ -4,11 +4,12 @@ public class MainApp {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		InEtudiantRepo etudRepo = new EtudiantRepository();
+		InUniversiteRepo univRepo = new UniversiteRepository();
 
-
-		EtudiantService serv=new EtudiantService();
+		EtudiantService serv=new EtudiantService(etudRepo, univRepo);
 		try {
-			serv.inscription(2, "Guendouziiiii", "wassila", "guen@gmail.com","xxxx", 123);
+			serv.inscription(4, "Guendouziiiii", "wassila", "guenj@gmail.com","xxxx", 123);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

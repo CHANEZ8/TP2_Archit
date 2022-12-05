@@ -5,12 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UniversiteRepository {
-	
-	
-	Universite GetById(int universityId) throws SQLException {
+public class UniversiteRepository implements InUniversiteRepo{
+	private InDBConnection BD;
+	@Override
+	public Universite GetById(int universityId) throws SQLException {
 		
-		DBConnection BD= DBConnection.getDBConnection();
+		BD= DBConnection.getDBConnection();
 		Connection connect=BD.getConn(); 
 		Statement stmt = connect.createStatement();
 		System.out.println("LogBD : d�but recherche de id universit� dans la base de donn�e");
