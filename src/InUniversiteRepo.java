@@ -7,4 +7,5 @@ import java.io.IOException;
 public interface InUniversiteRepo {
     Universite GetById(int universityId) throws SQLException;
     public int getNombreLivreAutoriser(int universityId) throws SQLException, IOException;
+    public int getNombreLivreBonus(int universityId) throws SQLException, IOException;
 }

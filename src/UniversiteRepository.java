@@ -48,5 +48,23 @@ public class UniversiteRepository implements InUniversiteRepo{
 		
 		return 0;
 	}
+
+	@Override
+	public int getNombreLivreBonus(int universityId) throws SQLException, IOException{
+		Universite univ=this.GetById(universityId);
+		if (univ.getPack() == TypePackage.Standard)
+	     {
+			  
+	        return 5;
+
+	     }
+	     else if (univ.getPack() == TypePackage.Premium)
+	     {
+
+	    	return 10;
+
+	     }
+	return 0;
+	}
 	
 }

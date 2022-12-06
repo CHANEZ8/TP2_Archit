@@ -33,15 +33,18 @@ public class EtudiantService {
 		
 		
 		stud.setNbLivreMensuel_Autorise(univRepo.getNombreLivreAutoriser(stud.getId_universite()));                
-	     
-		 etudRepo.add(stud);
-		 affiche.outPut_Msg("Log: Fin de l'operation d'ajout de l'etudiant avec matricule "+matricule);
+		AjouterNombreLivreBonus(stud);
+		etudRepo.add(stud);
+		affiche.outPut_Msg("Log: Fin de l'operation d'ajout de l'etudiant avec matricule "+matricule);
 		 
 		 return true;
 	    
 		
 	}
 	
+	public void AjouterNombreLivreBonus(Etudiant stud) throws SQLException, IOException {
+		stud.AjouterBonus(univRepo.getNombreLivreBonus(stud.getId_universite()));
+	}
 	
 	
 

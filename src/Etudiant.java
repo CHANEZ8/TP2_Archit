@@ -61,6 +61,13 @@ public class Etudiant {
 			this.email = email;
 		}
 
+		public void AjouterBonus(int nombreLivreBonus) {
+		
+			this.nbLivreMensuel_Autorise += nombreLivreBonus;
+		
+		
+		}
+
 
 		public int getNbLivreMensuel_Autorise() {
 			return nbLivreMensuel_Autorise;
