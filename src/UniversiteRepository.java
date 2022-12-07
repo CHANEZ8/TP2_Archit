@@ -39,32 +39,45 @@ public class UniversiteRepository implements InUniversiteRepo{
 		Universite univ=this.GetById(universityId);
 		if (univ.getPack() == TypePackage.Standard)
 	     {
-	        return 10;
+			Pack typeUniv = new Standard();
+			return typeUniv.getNombreLivreAutoriser();
 	     }
 	     else if (univ.getPack() == TypePackage.Premium)
 	     {
-	    	return 20;
+			Pack typeUniv = new Premium();
+	    	return typeUniv.getNombreLivreAutoriser();
+	    	 
 	     }
-		
 		return 0;
 	}
-
+		
 	@Override
 	public int getNombreLivreBonus(int universityId) throws SQLException, IOException{
 		Universite univ=this.GetById(universityId);
 		if (univ.getPack() == TypePackage.Standard)
 	     {
-			  
-	        return 5;
+			
+
+			Pack typepack = new Standard();
+			
+
+			return typepack.getNombreLivreBonus();
+
 
 	     }
 	     else if (univ.getPack() == TypePackage.Premium)
 	     {
+			
 
-	    	return 10;
+	    	 Pack typepack = new Premium();
+			
+			 
+	    	 return typepack.getNombreLivreBonus();
+
 
 	     }
-	return 0;
-	}
-	
+
+		 
+		 return 0;
+		}
 }
