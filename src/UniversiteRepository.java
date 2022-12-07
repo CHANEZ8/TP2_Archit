@@ -37,47 +37,23 @@ public class UniversiteRepository implements InUniversiteRepo{
 	@Override
 	public int getNombreLivreAutoriser(int universityId) throws SQLException, IOException{
 		Universite univ=this.GetById(universityId);
-		if (univ.getPack() == TypePackage.Standard)
-	     {
-			Pack typeUniv = new Standard();
-			return typeUniv.getNombreLivreAutoriser();
-	     }
-	     else if (univ.getPack() == TypePackage.Premium)
-	     {
-			Pack typeUniv = new Premium();
-	    	return typeUniv.getNombreLivreAutoriser();
-	    	 
-	     }
-		return 0;
+		TypePackage typePackage = univ.getPack();
+		Abstractfactory factory = new ConcreteFactory();
+		Pack typeUniv = factory.getPackageUniv(typePackage);
+
+		return typeUniv.getNombreLivreAutoriser();
+		
 	}
 		
 	@Override
 	public int getNombreLivreBonus(int universityId) throws SQLException, IOException{
 		Universite univ=this.GetById(universityId);
-		if (univ.getPack() == TypePackage.Standard)
-	     {
-			
 
-			Pack typepack = new Standard();
-			
-
-			return typepack.getNombreLivreBonus();
-
-
-	     }
-	     else if (univ.getPack() == TypePackage.Premium)
-	     {
-			
-
-	    	 Pack typepack = new Premium();
-			
-			 
-	    	 return typepack.getNombreLivreBonus();
-
-
-	     }
-
-		 
-		 return 0;
-		}
+		TypePackage typePackage = univ.getPack();
+		
+		Abstractfactory factory = new ConcreteFactory();
+		
+		Pack typeUniv = factory.getPackageUniv(typePackage);
+		return typeUniv.getNombreLivreBonus();
+}
 }

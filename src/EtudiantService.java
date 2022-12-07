@@ -1,8 +1,7 @@
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 public class EtudiantService {
 	private InEtudiantRepo etudRepo;
@@ -22,7 +21,7 @@ public class EtudiantService {
 	{
 	
 	    Etudiant stud = new Etudiant(matricule, nom, prenom, email,pwd,id_universite);
-	    Universite univ=univRepo.GetById(id_universite);
+	    
 	    
 		affiche.outPut_Msg("Log: debut de l'operation d'ajout de l'etudiant avec matricule "+matricule);
 	    
